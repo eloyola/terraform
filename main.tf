@@ -12,6 +12,12 @@ terraform {
     key = "terraform.tfstate"
   }
 }
+
+variable "imagebuild" {
+  type = string
+  description = "Latest image build"
+}
+
 resource "azurerm_resource_group" "eltf_test" {
   name     = "tfmainrgel"
   location = "West Europe"
@@ -26,7 +32,7 @@ resource "azurerm_container_group" "tfcg_test" {
   os_type             = "Linux"
   container {
     name   = "weatherapi"
-    image  = "enirque80/weatherapi"
+    image  = "enirque80/weatherapi:${var.imagebuild}"
     cpu    = "1"
     memory = "1"
     ports {
