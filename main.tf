@@ -4,6 +4,14 @@ provider "azurerm" {
   }
 }
 
+terraform {
+  backend "azurerm" {
+    resource_group_name = "tf_rg_blobstorage"
+    storage_account_name = "tfstorageaenirque80"
+    container_name = "tfstate"
+    key = "terraform.tfstate"
+  }
+}
 resource "azurerm_resource_group" "eltf_test" {
   name     = "tfmainrgel"
   location = "West Europe"
